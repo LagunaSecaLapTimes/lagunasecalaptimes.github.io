@@ -5,39 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>拉古纳圈速榜</title>
     <style>
-        body {
-            font-family: 'Noto Sans SC', Arial, sans-serif; /* Noto Sans SC is good for Chinese */
+        body, html {
+            height: 100%;
             margin: 0;
+        }
+        .bg {
+            /* The image used */
+            background-image: url('logo.jpeg'); /* Path to your logo image */
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .content {
+            /* Positioning and styling for the semi-transparent layer */
+            position: relative;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
             padding: 20px;
-            background-color: #eeeeee; /* Light grey background for the content */
-        }
-        header {
-            background: linear-gradient(to right, #0062cc, #0096ff);
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        header img {
-            width: 100px; /* Increased logo size */
-            height: auto;
-            margin-right: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #ffffff; /* White background for table to stand out */
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #4CAF50; /* Green background for headers */
-            color: white;
+            margin: 10% auto;
+            max-width: 960px; /* Adjust based on your content's width */
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -48,7 +40,7 @@
     <h1>拉古纳圈速榜</h1>
 </header>
 
-<h2>拉古纳圈速榜</h2>
+<h2>拉古纳圈速榜 Laguna Seca Lap Times</h2>
 
 <table>
     <tr>
