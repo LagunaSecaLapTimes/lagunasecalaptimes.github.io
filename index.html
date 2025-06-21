@@ -322,10 +322,6 @@
             </tbody>
         </table>
         <script>
-            const priceBase = 64000;
-            const priceConst = 5000;
-            const lapTimeConst = 0.1;
-            const lapTimeBase = 99.2;
 
             function parseTimeToSeconds(timeStr) {
                 const [minutes, seconds] = timeStr.split(":").map(parseFloat);
@@ -333,12 +329,14 @@
             }
 
             function lagunaIndex(price, lapTime) {
-                function tanh(x) {
-                    return Math.sinh(x) / Math.cosh(x);
-                }
-                const priceScore = 1 - 0.5 * tanh((price - priceBase) / priceConst);
-                const lapTimeScore = Math.exp(lapTimeConst * (lapTimeBase - lapTime));
-                return priceScore * lapTimeScore;
+                const t0 = 99.2;
+                const p0 = 64000;
+                const A = 6.5;
+                const B = 0.0005;
+
+                let index = 80 + A * (t0 - lapTime) + B * (p0 - price);
+                index = Math.max(20, Math.min(100, index));
+                return Math.round(index * 10) / 10;
             }
             const table = document.getElementById("leaderboard");
             const headerRow = table.rows[0];
@@ -346,7 +344,7 @@
           
             // Add new header
             const newHeader = document.createElement("th");
-            newHeader.textContent = "拉古纳指数";
+            newHeader.textContent = "LAPS圈速性价比指数";
             headerRow.appendChild(newHeader);
           
             // Loop through rows (skipping header row)
@@ -356,7 +354,7 @@
               const total = lagunaIndex(price, lapTime);
           
               const newCell = rows[i].insertCell(-1); // Add at the end
-              newCell.textContent = total.toFixed(2);
+              newCell.textContent = total.toFixed(1);
             }
 
             document.addEventListener('DOMContentLoaded', () => {
